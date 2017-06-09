@@ -84,7 +84,7 @@
                     <images>
                         <image>
                             <alias>tomcat-jre8-with-tini-image</alias>
-                            <name>cafinternal/tomcat-jre8-with-tini-image:${project.version}</name>
+                            <name>cafinternal/prereleases:tomcat-jre8-with-tini-image-${project.version}</name>
                             <build>
                                 <dockerFileDir>.</dockerFileDir>
                                 <args>
