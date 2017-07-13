@@ -33,7 +33,7 @@
     <parent>
         <groupId>com.github.cafapi</groupId>
         <artifactId>caf-common</artifactId>
-        <version>1.11.0-218</version>
+        <version>1.12.0-232</version>
     </parent>
 
     <licenses>
@@ -54,6 +54,9 @@
     <properties>
         <maven.install.skip>true</maven.install.skip>
         <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+        <dockerHubOrganization>cafapi</dockerHubOrganization>
+        <dockerCafApiOrg>${dockerImagePrefix}${dockerHubOrganization}${dockerOrgSeperator}</dockerCafApiOrg>
+        <dockerProjectVersion>${dockerVersionSeperator}${project.version}</dockerProjectVersion>
     </properties>
 
     <build>
@@ -83,7 +86,7 @@
                     <images>
                         <image>
                             <alias>tomcat-jre8-with-tini-image</alias>
-                            <name>cafinternal/prereleases:tomcat-jre8-with-tini-image-${project.version}</name>
+                            <name>${dockerCafApiOrg}tomcat-jre8-with-tini${dockerProjectVersion}</name>
                             <build>
                                 <dockerFileDir>.</dockerFileDir>
                                 <args>
@@ -92,7 +95,7 @@
                                     <BUILD_DATE>${maven.build.timestamp}</BUILD_DATE>
                                     <GIT_BRANCH>${git.branch}</GIT_BRANCH>
                                     <GIT_COMMIT>${git.revision}</GIT_COMMIT>
-                                    
+
                                     <!-- Enable internet access -->
                                     <http_proxy>${env.HTTP_PROXY}</http_proxy>
                                     <https_proxy>${env.HTTPS_PROXY}</https_proxy>
